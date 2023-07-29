@@ -6,6 +6,7 @@ const [enteredId, setEnteredId]= useState('');
 const [enteredName, setEnteredName]= useState('');
 const [enteredPrice, setEnteredPrice]= useState('');
 
+
 const idChangeHandler=(event)=>{
     setEnteredId(event.target.value);
 }

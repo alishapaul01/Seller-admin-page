@@ -6,7 +6,6 @@ import OrderList from './OrderList';
 
 function App() {
   const[productsList, setProductsList]= useState([]);
-  const[totalAmount, setTotalAmount]= useState(0);
   const addProductHandler=(id, price, pname)=>{
   const newProduct= {id: id, price: price, name: pname};
   const updatedProduct= [...productsList, newProduct]
@@ -19,20 +18,15 @@ function App() {
 const deleteProductHandler=(id)=>{
 
     localStorage.removeItem(id);
-    setProductsList([]);
+    setProductsList(prevProducts=>{
+      return prevProducts.filter(productsList=> productsList.id !==id)
+    });
   
-}
-const totalAmountHandler=()=>{
-  const totalAmount =productsList.reduce((total, productsList)=>{
-    return total+ productsList.price
-  },0)
-  setTotalAmount(totalAmount);
-
 }
 
   return (
     <React.Fragment>
-      <FormInput onSubmitProduct={addProductHandler} total={totalAmountHandler}/>
+      <FormInput onSubmitProduct={addProductHandler}/>
       <OrderList products={productsList} onDeleteProduct={deleteProductHandler}/>
     </React.Fragment> 
   );

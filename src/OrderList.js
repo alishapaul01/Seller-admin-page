@@ -4,6 +4,10 @@ const OrderList=(props)=>{
     const deleteProduct=(id)=>{
         props.onDeleteProduct(id);
     }
+    let subTotal=0;
+    props.products.map((product)=>{
+        return (subTotal+= parseInt(product.price))
+    })
    
     return ( 
     <>
@@ -16,7 +20,7 @@ const OrderList=(props)=>{
             </li>
         ))} 
     </ul>
-    <h2>Total Value Worth of Products: Rs {props.total} </h2>
+    <h2>Total Value Worth of Products: Rs {subTotal} </h2>
     </>
     )
     
